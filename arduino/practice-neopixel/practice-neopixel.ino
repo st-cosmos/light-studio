@@ -7,21 +7,102 @@ Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 void setup() {
   // put your setup code here, to run once:
   pixels.begin();
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
   pixels.clear();
   pixels.show();
-  delay(1000);
+}
 
-  for(int i=0; i<NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(20, 0, 100));
+ void loop() {
+  // put your main code here, to run repeatedly:
+  // blinkOddEven();
+   tornadopotato();
+  // fountain();
+}
+
+void fountain(){
+  for(int i=0; i<NUMPIXELS/2; i++){
+    pixels.setPixelColor(i, pixels.Color(30, 0, 100));
+    pixels.show();
+    delay(100);
+    pixels.setPixelColor(i+12, pixels.Color(30, 0, 100));
     pixels.show();
     delay(1000);
+    pixels.clear();
   }
-  // pixels.fill(pixels.Color(20, 0, 100), 2, 10);
 }
+
+void tornadopotato() {
+  pixels.begin();
+  pixels.clear();
+  turnOn4(255, 0, 255);
+  delay(500);
+}
+
+void turnOn4(int r, int g, int b){
+  int turnOffPin=0;
+  for(int i=0; i<NUMPIXELS; i++) {
+   // int x=0;
+
+    pixels.setPixelColor(i, pixels.Color(r, g, b));
+    pixels.show();
+    
+    if(i >= 3) {
+      delay(100);
+      pixels.setPixelColor(turnOffPin, pixels.Color(0, 0, 0));
+      turnOffPin++;
+      r -= 10;
+      b -= 10;
+    }
+  }  
+}
+
+void blinkOddEven() {
+  pixels.clear();
+  pixels.show();
+  turnOnOdd();
+  delay(500);
+  pixels.clear();
+  pixels.show();
+  turnOnEven();
+  delay(500);
+}
+
+void turnOnOdd() {
+for(int i=0; i<NUMPIXELS; i++) { 
+    if (i%2 != 0){
+      pixels.setPixelColor(i, pixels.Color(20, 0, 100));
+      pixels.show();
+    }
+  }
+}
+
+void turnOnEven() {
+for(int i=0; i<NUMPIXELS; i++){
+    if (i%2 == 0) {
+      pixels.setPixelColor(i, pixels.Color(20, 0, 100));
+      pixels.show();
+     }
+  }
+}
+
+/*
+for(int i=0; i<NUMPIXELS/2; i++) { 
+    if (i%2==0){
+      pixels.setPixelColor(i, pixels.Color(20, 0, 100));
+      pixels.show();
+    }
+    delay(1000);
+  }  
+
+  for(int i=13; i<NUMPIXELS; i++){
+    if (i%2 != 0) {
+      pixels.setPixelColor(i, pixels.Color(20, 0, 100));
+      pixels.show();
+     }
+     delay(1000);
+  }
+*/
+
+  // pixels.fill(pixels.Color(20, 0, 100), 2, 10);
 
 /**
  * TODO
@@ -32,3 +113,5 @@ void loop() {
 */
 
 // test for git usage
+
+
