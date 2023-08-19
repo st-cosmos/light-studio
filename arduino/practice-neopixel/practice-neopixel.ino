@@ -14,7 +14,7 @@ void setup() {
  void loop() {
   // put your main code here, to run repeatedly:
   // blinkOddEven();
-   tornadopotato();
+  // tornadopotato();
   // fountain();
 }
 
@@ -33,13 +33,13 @@ void fountain(){
 void tornadopotato() {
   pixels.begin();
   pixels.clear();
-  turnOn4(255, 0, 255);
+  turnOn4(202, 0, 202);
   delay(500);
 }
 
 void turnOn4(int r, int g, int b){
   int turnOffPin=0;
-  for(int i=0; i<NUMPIXELS; i++) {
+  for(int i=0; i<NUMPIXELS+4; i++) {
    // int x=0;
 
     pixels.setPixelColor(i, pixels.Color(r, g, b));
@@ -69,7 +69,7 @@ void blinkOddEven() {
 void turnOnOdd() {
 for(int i=0; i<NUMPIXELS; i++) { 
     if (i%2 != 0){
-      pixels.setPixelColor(i, pixels.Color(20, 0, 100));
+      pixels.setPixelColor(i, pixels.Color(2, 0, 2));
       pixels.show();
     }
   }
@@ -78,7 +78,7 @@ for(int i=0; i<NUMPIXELS; i++) {
 void turnOnEven() {
 for(int i=0; i<NUMPIXELS; i++){
     if (i%2 == 0) {
-      pixels.setPixelColor(i, pixels.Color(20, 0, 100));
+      pixels.setPixelColor(i, pixels.Color(2, 0, 2));
       pixels.show();
      }
   }
